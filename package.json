@@ -1,0 +1,9 @@
+{
+  "name": "nodetube",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "ytdl": "latest",
+    "connect": "~2.7.3"
+  }
+}
