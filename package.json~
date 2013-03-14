@@ -5,9 +5,5 @@
   "dependencies": {
     "ytdl": "latest",
     "connect": "~2.7.3"
-  },
-  "engines":{
-     "node":">= 0.8.0",
-     "npm":">= 1.1.0"
   }
 }
