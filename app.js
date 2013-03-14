@@ -11,7 +11,7 @@ var app = connect()
 
 
 http.createServer(app).listen(port, function() {
-  console.log('Running on port %s', port);
+  console.log('App running at http://localhost:%s', port);
 });
 
 
@@ -19,7 +19,10 @@ http.createServer(app).listen(port, function() {
 function download (req, res) {
     var url = req.body.video, content;
     
-    res.writeHead(200, {'Content-Type': 'video/x-flv'}); 
+    res.writeHead(200, {
+        'Content-disposition': 'attachment; filename=nodetube.flv',
+        'Content-Type': 'video/x-flv'
+    }); 
     content = new Download(url);
     
     content.on('progress', function (progress) { console.log(progress); });

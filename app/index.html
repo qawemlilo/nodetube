@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Template &middot; Bootstrap</title>
+    <title>NodeTube - download your youtube videos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
     <style type="text/css">
       body {
         padding-top: 20px;
@@ -22,6 +23,15 @@
         margin: 0 auto;
         max-width: 800px;
       }
+      
+      h1 {
+        font-family: 'Berkshire Swash', cursive;
+        font-size: 40px;
+      }
+      
+      p {
+        color: #999;
+      }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -33,14 +43,14 @@
    <div class="container" style="text-align: center">
 
       <div class="row-fluid">
-        <h1>NodeTube</h1>
-        <p>Download YouTube Videos </p>
+        <h1>Node<span style="color:red">Tube</span></h1>
+        <p>Download your YouTube videos </p>
       </div>
     
   
       <form action="/download" method="post" name="nodetube">
         <div class="input-append">
-          <input placeholder="Enter youtube video URL" name="video" class="span4" id="video" type="text">
+          <input placeholder="Enter youtube video URL" name="video" class="span4" onfocus="document.forms[0].reset();" id="video" type="text">
         <button class="btn" type="submit">Go!</button>
        </div>
       </form>
