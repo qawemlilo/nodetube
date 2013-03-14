@@ -3,7 +3,7 @@ var ytdl = require('ytdl'),
 
 
 function Download (url) {
-    var readStream = ytdl(url),
+    var readStream = ytdl(url, {quality: 'lowest'}),
         dataRead = 0,
         progress = 0,
         self = this;
