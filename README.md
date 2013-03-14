@@ -15,7 +15,7 @@ cd nodetube && npm install
 
 ## Wep App
 
-Run the command below and then got to http//localhost:3030 to use the web app.
+Run the command below and then go to http//localhost:3030 to use the web app.
 
 ```
 # Run the app

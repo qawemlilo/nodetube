@@ -5,7 +5,7 @@ var http = require('http'),
     
     
 var app = connect()
-    .use(connect.static('app')) // uncomment when deploying
+    .use(connect.static('app')) 
     .use(connect.bodyParser())
     .use('/download', download);
 
@@ -17,14 +17,22 @@ http.createServer(app).listen(port, function() {
 
 
 function download (req, res) {
-    var url = req.body.video, content;
+    var url = req.body.video, 
+        format = req.body.format || 'flv',
+        content;
     
-    res.writeHead(200, {
-        'Content-disposition': 'attachment; filename=nodetube.flv',
-        'Content-Type': 'video/x-flv'
-    }); 
-    content = new Download(url);
+    if (!url) {
+        res.writeHead(500, {'Content-Type': 'text/html'});
+        res.end('<p>You did not include a video url. <a href="javascript:history.go(-1);">[ Back ]</a></p>');       
+    }
+    else {
+        res.writeHead(200, {
+            'Content-disposition': 'attachment; filename=nodetube.' + format,
+            'Content-Type': 'video/x-flv'
+        }); 
+        content = new Download(url);
     
-    content.on('progress', function (progress) { console.log(progress); });
-    content.pipe(res);
+        content.on('progress', function (progress) { console.log(progress); });
+        content.pipe(res);
+    }
 }
