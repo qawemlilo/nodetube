@@ -26,13 +26,17 @@ function download (req, res) {
         res.end('<p>You did not include a video url. <a href="javascript:history.go(-1);">[ Back ]</a></p>');       
     }
     else {
-        res.writeHead(200, {
-            'Content-disposition': 'attachment; filename=nodetube.' + format,
-            'Content-Type': 'video/x-flv'
-        }); 
         content = new Download(url);
+        
+        content.on('info', function (info, data) {
+            res.writeHead(200, {
+            'Content-disposition': 'attachment; filename=nodetube.' + format,
+            'Content-Type': 'video/x-flv',
+            'Content-Length': data.size
+            });           
     
-        content.on('progress', function (progress) { console.log(progress); });
-        content.pipe(res);
+            content.on('progress', function (progress) { console.log(progress); });
+            content.pipe(res);
+        });
     }
 }
