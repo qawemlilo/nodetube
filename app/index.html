@@ -40,6 +40,9 @@
         color: #FFFFFF;
         text-decoration: none;
       }
+      select {
+        width: auto;
+      }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -59,8 +62,8 @@
       <form action="/download" method="post" name="nodetube">
         
        <div class="row-fluid" style="padding-bottom: 5px; padding-top: 0px;">
-        <input type="radio" style="margin-top: -4px;" name="format" value="flv" checked> flv
-        <input type="radio" style="margin-left: 20px; margin-top: -4px;" name="format" value="mp4"> mp4
+        <select name="format"><option>Select Format</option><option value="flv">.flv</option><option value="mp4">.mp4</option></select> 
+        <select name="quality"><option>Select Quality</option><option value="lowest">Low Res</option><option value="18">Medium Res</option><option value="highest">High Res</option></select> 
        </div>
         <div class="input-append">
           <input placeholder="Enter youtube video URL" name="video" class="span4" onfocus="if(this.value) document.forms[0].reset();" id="video" type="text">

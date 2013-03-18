@@ -16,7 +16,7 @@ videos.forEach(function (url) {
         path = folder + '/video_' + counter + '.flv',
         writeStream = fs.createWriteStream(path);
     
-    download = new Download(url);
+    download = new Download(url, {quality: '18'});
     
     download.on('progress', function (progress) { 
         if (progress == '100%') {

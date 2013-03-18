@@ -2,8 +2,8 @@ var ytdl = require('ytdl'),
     EventEmitter = require('events').EventEmitter;
 
 
-function Download (url) {
-    var readStream = ytdl(url),
+function Download (url, options) {
+    var readStream = ytdl(url, options),
         dataRead = 0,
         progress = 0,
         self = this;

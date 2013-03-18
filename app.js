@@ -19,6 +19,7 @@ http.createServer(app).listen(port, function() {
 function download (req, res) {
     var url = req.body.video, 
         format = req.body.format || 'flv',
+        quality = req.body.quality || '18',
         content;
     
     if (!url) {
@@ -26,7 +27,7 @@ function download (req, res) {
         res.end('<p>You did not include a video url. <a href="javascript:history.go(-1);">[ Back ]</a></p>');       
     }
     else {
-        content = new Download(url);
+        content = new Download(url, {quality: quality});
         
         content.on('info', function (info, data) {
             res.writeHead(200, {
