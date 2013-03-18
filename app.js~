@@ -31,9 +31,9 @@ function download (req, res) {
         
         content.on('info', function (info, data) {
             res.writeHead(200, {
-                'Content-disposition': 'attachment; filename=nodetube.' + format,
-                'Content-Type': 'video/x-flv',
-                'Content-Length': data.size
+            'Content-disposition': 'attachment; filename=nodetube.' + format,
+            'Content-Type': 'video/x-flv',
+            'Content-Length': data.size
             });           
 
             content.pipe(res);

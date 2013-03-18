@@ -1,6 +1,5 @@
 var ytdl = require('ytdl'),
-    EventEmitter = require('events').EventEmitter,
-    ProgressBar = require('progress');
+    EventEmitter = require('events').EventEmitter;
 
 
 function Download (url, options) {
