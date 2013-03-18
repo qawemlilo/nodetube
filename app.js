@@ -35,8 +35,7 @@ function download (req, res) {
             'Content-Type': 'video/x-flv',
             'Content-Length': data.size
             });           
-    
-            content.on('progress', function (progress) { console.log(progress); });
+
             content.pipe(res);
         });
     }

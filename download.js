@@ -1,27 +1,25 @@
 var ytdl = require('ytdl'),
-    EventEmitter = require('events').EventEmitter;
+    EventEmitter = require('events').EventEmitter,
+    ProgressBar = require('progress');
 
 
 function Download (url, options) {
     var readStream = ytdl(url, options),
         dataRead = 0,
         progress = 0,
-        self = this;
+        self = this; 
         
     self.progress = 0;
    
     readStream.on('info', function (info, format) {
+        var bar = new ProgressBar('  downloading [:bar] :percent :etas', {complete: '=', incomplete: ' ', width: 40, total: parseInt(format.size, 10)});
+        
         readStream.on('data', function (data) {
-            dataRead += data.length;
-    
-            var percent = dataRead / format.size;
-            
-            progress = Math.floor(percent * 100); 
-            
-            if (progress > self.progress) {
-                readStream.emit('progress', progress + '%');
-                self.progress = progress;
-            }
+            bar.tick(data.length);
+        });
+        
+        readStream.on('end', function(){
+            console.log('\n');
         });
     });
     

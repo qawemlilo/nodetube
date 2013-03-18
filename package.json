@@ -4,10 +4,11 @@
   "private": true,
   "dependencies": {
     "ytdl": "latest",
-    "connect": "~2.7.3"
+    "connect": "~2.7.3",
+    "progress": "~0.1.0"
   },
-  "engines":{
-     "node":">= 0.8.0",
-     "npm":">= 1.1.0"
+  "engines": {
+    "node": ">= 0.8.0",
+    "npm": ">= 1.1.0"
   }
 }
