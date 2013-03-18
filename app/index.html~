@@ -62,8 +62,8 @@
       <form action="/download" method="post" name="nodetube">
         
        <div class="row-fluid" style="padding-bottom: 5px; padding-top: 0px;">
-        <select name="format"><option value="">Select Format</option><option value="flv">.flv</option><option value="mp4">.mp4</option></select> 
-        <select name="quality"><option value="">Select Quality</option><option value="lowest">Low Res</option><option value="18">Medium Res</option><option value="highest">High Res</option></select> 
+        <select name="format"><option>Select Format</option><option value="flv">.flv</option><option value="mp4">.mp4</option></select> 
+        <select name="quality"><option>Select Quality</option><option value="lowest">Low Res</option><option value="18">Medium Res</option><option value="highest">High Res</option></select> 
        </div>
         <div class="input-append">
           <input placeholder="Enter youtube video URL" name="video" class="span4" onfocus="if(this.value) document.forms[0].reset();" id="video" type="text">
