@@ -20,6 +20,7 @@ function download (req, res) {
     var url = req.body.video, 
         format = req.body.format || 'flv',
         quality = req.body.quality || '18',
+        content-type = (format === 'flv') ? 'video/x-flv' : 'video/mp4',
         content;
     
     if (!url) {
@@ -32,7 +33,7 @@ function download (req, res) {
         content.on('info', function (info, data) {
             res.writeHead(200, {
                 'Content-disposition': 'attachment; filename=nodetube.' + format,
-                'Content-Type': 'video/x-flv',
+                'Content-Type': content-type,
                 'Content-Length': data.size
             });           
 
