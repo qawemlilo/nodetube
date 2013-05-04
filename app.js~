@@ -32,7 +32,7 @@ function download (req, res) {
         
         content.on('info', function (info, data) {
             res.writeHead(200, {
-                'Content-disposition': 'attachment; filename=' + info.title + '.' + format,
+                'Content-disposition': 'attachment; filename=' + info.title.replace(' ', '-') + '.' + format,
                 'Content-Type': contentType,
                 'Content-Length': data.size
             });           
