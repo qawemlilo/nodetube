@@ -1,16 +1,30 @@
+
 var ytdl = require('ytdl'),
+    util = require('util'),
     EventEmitter = require('events').EventEmitter;
 
 
-function Download (url, options) {
+/*
+
+*/
+function download (url, options) {
     var readStream = ytdl(url, options);
     
     return readStream;
 }
 
-Download.prototype = EventEmitter.prototype;
 
-module.exports = Download;
+
+
+/*
+    Inherit from EventEmitter
+*/
+util.inherits(download, EventEmitter);
+
+
+
+
+module.exports = download;
 
 
 
