@@ -1,6 +1,6 @@
 # NodeTube
 
-NodeTube is Node tool for downloading YouTube videos. It also works in networks where YouTube has been blocked. 
+NodeTube is Node.js app for downloading YouTube videos. It also works in networks where YouTube has been blocked. 
 
 
 ## Installation
@@ -24,7 +24,7 @@ node app.js
 
 ## Batch downloads
 
-For batch downloads, in config.js, set the path for the downloads folder and list all your video URLs in the videos array.
+For batch downloads, in config.json, set the path for the downloads folder and list all your video URLs in the videos array.
 
 ```
 # Batch downloads

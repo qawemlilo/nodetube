@@ -93,6 +93,7 @@ function Routes (req, res) {
     
     else {
         vUrl = 'http://www.youtube.com/watch?v=' + vId;
+        
         stream = new NodeTube(vUrl, {quality: quality});
         
         stream.on('error', function () {
@@ -102,6 +103,7 @@ function Routes (req, res) {
         stream.on('info', function (info, data) {
             filename = parseFilename(info.title, format);
             
+            // if file is bigger than 200mb
             if (data.size > 209715200) {
                 errorPage(req, res, 'The file you are trying to download is too big.');
             }
