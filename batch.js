@@ -1,6 +1,6 @@
-var Download = require('./download'),
+var NodeTube = require('./lib/nodetube'),
     fs = require('fs'),
-    config = require('./config'),
+    config = require('./config.json'),
     
     videos = config.videos,
     folder = config.folder
@@ -16,7 +16,7 @@ videos.forEach(function (url) {
         path = folder + '/video_' + counter + '.flv',
         writeStream = fs.createWriteStream(path);
     
-    download = new Download(url, {quality: '18'});
+    download = new NodeTube(url, {quality: '18'});
     
     download.on('progress', function (progress) { 
         if (progress == '100%') {
