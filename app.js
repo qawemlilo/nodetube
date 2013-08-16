@@ -7,7 +7,6 @@ var http = require('http'),
     
 var app = connect()
     .use(connect.static('app'))
-    .use(connect.static('downloads'))
     .use(connect.compress()) 
     .use(connect.bodyParser())
     .use('/download', routes.download);
