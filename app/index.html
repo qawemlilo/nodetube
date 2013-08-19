@@ -59,7 +59,7 @@
       <p>Download your YouTube videos </p>
     </div>
   
-    <form action="/download" method="post" name="nodetube"> 
+    <form action="/download" method="post" name="nodetube" onsubmit="return (!!(document.forms[0].video));"> 
       <div class="row-fluid" style="padding-bottom: 5px; padding-top: 0px;">
         <select name="format">
           <option value="">Format</option>
@@ -68,7 +68,7 @@
         </select>
         
         <select name="quality">
-          <option value="">Select Quality</option>
+          <option value="">Quality</option>
           <option value="lowest">Low</option>
           <option value="18">Medium</option>
           <option value="highest">High</option>
