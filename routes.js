@@ -2,6 +2,7 @@
 var NodeTube = require('./lib/nodetube'),
     fs = require('fs'), 
     URL = require('url'),
+    logger = require('./log.json'), 
     active = false;
 
 
@@ -26,6 +27,31 @@ function videoRegex (url) {
 }
 
 
+// This function logs the download metadata
+function logDownloadData(obj) {
+    var data = {}, jsonString;
+    
+    data.id = obj.id;
+    data.ip = obj.ip || 'null';
+    data.time = Date.now();
+    data.video = obj.video;
+    data.format = obj.format;
+    data.title = obj.title;
+    data.quality = obj.quality;
+    
+    logger.push(data);
+    
+    jsonString = JSON.stringify(logger, null, 4);
+    
+    fs.writeFile('./log.json', jsonString, function (err) {
+        if (err) throw err;
+        console.log('Dowload has be logged!');
+    });
+}
+
+
+// Parses a given youtube url
+// @return - (String) video id
 function parseUrl (urlStr) {
     "use strict";
     
@@ -43,6 +69,8 @@ function parseUrl (urlStr) {
 }
 
 
+// Parses a video title and concatenates the video extension
+// @return - (String) clean video filename
 function parseFilename (title, ext) {
    "use strict";
    
@@ -54,6 +82,7 @@ function parseFilename (title, ext) {
 }
 
 
+// Server error page
 function errorPage (req, res, msg, fn) {
     "use strict";
     
@@ -81,7 +110,9 @@ function Routes (req, res) {
         stream,
         filename,
         vId = parseUrl(url),
-        vUrl;
+        vUrl,
+        logData = {};
+
     
     if (!vId) {
         errorPage(req, res, 'NodeTube does not understand the URL you entered');       
@@ -103,6 +134,12 @@ function Routes (req, res) {
         stream.on('info', function (info, data) {
             filename = parseFilename(info.title, format);
             
+            logData.id = vId;
+            logData.title = info.title;
+            logData.format = format;
+            logData.quality = quality;
+            logData.ip = req.headers['X-Forwarded-For'];
+            
             // if file is bigger than 200mb
             if (data.size > 209715200) {
                 errorPage(req, res, 'The file you are trying to download is too big.');
@@ -121,6 +158,7 @@ function Routes (req, res) {
                 
                 stream.on('end', function () {
                     active = false;
+                    logDownloadData(logData);
                 });
             }
         });
