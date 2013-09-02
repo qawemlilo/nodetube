@@ -32,6 +32,11 @@ node batch.js
 ```
 
 
+## Dependencies
+ - [ytdl](https://github.com/fent/node-ytdl)
+ - [connect](http://www.senchalabs.org/connect)
+
+
 
 
 ## License

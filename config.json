@@ -1,5 +1,9 @@
 {
-    "folder": "../youtube-downloads",
+    "folder": "../youtube-downloads/",
+    
+    "format": "mp4",
+    
+    "quality": "highest",
 
     "videos": [
         "http://www.youtube.com/watch?v=zva_GETXimI",

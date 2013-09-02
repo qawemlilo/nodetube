@@ -2,7 +2,7 @@
 var NodeTube = require('./lib/nodetube'),
     fs = require('fs'), 
     URL = require('url'),
-    logger = require('./log.json'), 
+    SIZE_LIMIT = 209715200, // 200mb
     active = false;
 
 
@@ -24,29 +24,6 @@ function videoRegex (url) {
     } 
     
     return result; 
-}
-
-
-// This function logs the download metadata
-function logDownloadData(obj) {
-    var data = {}, jsonString;
-    
-    data.id = obj.id;
-    data.ip = obj.ip || 'null';
-    data.time = Date.now();
-    data.video = obj.video;
-    data.format = obj.format;
-    data.title = obj.title;
-    data.quality = obj.quality;
-    
-    logger.push(data);
-    
-    jsonString = JSON.stringify(logger, null, 4);
-    
-    fs.writeFile('./log.json', jsonString, function (err) {
-        if (err) throw err;
-        console.log('Dowload has be logged!');
-    });
 }
 
 
@@ -140,8 +117,8 @@ function Routes (req, res) {
             logData.quality = quality;
             logData.ip = req.headers['X-Forwarded-For'];
             
-            // if file is bigger than 200mb
-            if (data.size > 209715200) {
+            // if file is bigger than limit
+            if (data.size > SIZE_LIMIT) {
                 errorPage(req, res, 'The file you are trying to download is too big.');
             }
             else {
@@ -155,10 +132,8 @@ function Routes (req, res) {
                 
                 stream.pipe(res, {end: false});
 
-                
                 stream.on('end', function () {
                     active = false;
-                    logDownloadData(logData);
                 });
             }
         });
@@ -168,3 +143,4 @@ function Routes (req, res) {
 
 
 module.exports.download = Routes;
+module.exports.parseFilename = parseFilename;

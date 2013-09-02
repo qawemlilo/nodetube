@@ -1,5 +1,6 @@
 var NodeTube = require('./lib/nodetube'),
     fs = require('fs'),
+    parseFilename = require('./routes').parseFilename,
     config = require('./config.json'),
     
     videos = config.videos,
@@ -12,21 +13,23 @@ if (!fs.existsSync(folder)) {
 }
    
 videos.forEach(function (url) {
-    var download, 
-        path = folder + '/video_' + counter + '.flv',
-        writeStream = fs.createWriteStream(path);
+    var download,
+        writeStream;
     
-    download = new NodeTube(url, {quality: '18'});
+    download = new NodeTube(url, {quality: config.quality});
     
-    download.on('progress', function (progress) { 
-        if (progress == '100%') {
-            console.log(path + ' download complete!');
-        } 
+    download.on('info', function (info, data) {
+        var filename = parseFilename(info.title, config.format);
+        
+        writeStream = fs.createWriteStream(folder + filename);
+    
+        download.on('progress', function (progress) { 
+            if (progress == '100%') {
+                console.log(filename + ' download complete!');
+            } 
+        });
+        
+        console.log('Downloading ' + filename + ' (' + data.size + 'kb)');
+        download.pipe(writeStream);
     });
-    
-    console.log('Downloading ' + url + ' to ' + path);
-    
-    download.pipe(writeStream);
-    
-    counter++;
 });

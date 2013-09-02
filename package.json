@@ -4,8 +4,7 @@
   "private": true,
   "dependencies": {
     "ytdl": "latest",
-    "connect": "~2.7.3",
-    "progress": "~0.1.0"
+    "connect": "~2.7.3"
   },
   "engines": {
     "node": ">= 0.8.0",
