@@ -2,7 +2,7 @@
 var NodeTube = require('./lib/nodetube'),
     fs = require('fs'), 
     URL = require('url'),
-    SIZE_LIMIT = 209715200, // 200mb
+    SIZE_LIMIT = (200 * 1024), // 200mb
     active = false;
 
 
