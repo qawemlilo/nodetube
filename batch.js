@@ -4,8 +4,7 @@ var NodeTube = require('./lib/nodetube'),
     config = require('./config.json'),
     
     videos = config.videos,
-    folder = config.folder
-    counter = 1;
+    folder = config.folder;
     
 
 if (!fs.existsSync(folder)) {

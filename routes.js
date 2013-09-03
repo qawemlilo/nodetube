@@ -12,34 +12,21 @@ var NodeTube = require('./lib/nodetube'),
     Helper functions
 */
 
-function videoRegex (url) {
-    "use strict";
-    
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/,
-        match = url.match(regExp),
-        result = false;
-    
-    if (match && match[7].length === 11) {
-        result = match[7];
-    } 
-    
-    return result; 
-}
-
-
 // Parses a given youtube url
 // @return - (String) video id
 function parseUrl (urlStr) {
     "use strict";
     
     var urlObject = URL.parse(urlStr, true),
-        vId = '';
+        regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/,
+        match = urlStr.match(regExp),
+        vId = false;
                 
     if (urlObject.query.v) {
         vId = urlObject.query.v;
     }
-    else if (videoRegex(urlStr)) {
-        vId = videoRegex(urlStr);
+    else if (match && match[7].length === 11) {
+        vId = match[7];
     }
 
     return vId;    
@@ -87,8 +74,7 @@ function Routes (req, res) {
         stream,
         filename,
         vId = parseUrl(url),
-        vUrl,
-        logData = {};
+        vUrl;
 
     
     if (!vId) {
@@ -111,12 +97,6 @@ function Routes (req, res) {
         stream.on('info', function (info, data) {
             filename = parseFilename(info.title, format);
             
-            logData.id = vId;
-            logData.title = info.title;
-            logData.format = format;
-            logData.quality = quality;
-            logData.ip = req.headers['X-Forwarded-For'];
-            
             // if file is bigger than limit
             if (data.size > SIZE_LIMIT) {
                 errorPage(req, res, 'The file you are trying to download is too big.');
@@ -129,6 +109,8 @@ function Routes (req, res) {
                     'Content-Type': contentType,
                     'Content-Length': data.size
                 });
+                
+                console.log('Downloading ' + filename + ' ...');
                 
                 stream.pipe(res, {end: false});
 

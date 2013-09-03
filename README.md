@@ -1,6 +1,6 @@
 # NodeTube
 
-NodeTube is Node.js app for downloading YouTube videos. It also works in networks where YouTube has been blocked. 
+NodeTube is a Node.js app for downloading YouTube videos. It also works in networks where YouTube has been blocked. 
 
 
 ## Installation
