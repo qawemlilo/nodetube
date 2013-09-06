@@ -31,6 +31,12 @@ For batch downloads, in config.json, set the path for the downloads folder and l
 node batch.js
 ```
 
+## Testing
+
+```
+npm test
+```
+
 
 ## Dependencies
  - [ytdl](https://github.com/fent/node-ytdl)
