@@ -126,3 +126,5 @@ function Routes (req, res) {
 
 module.exports.download = Routes;
 module.exports.parseFilename = parseFilename;
+module.exports.parseUrl = parseUrl;
+module.exports.errorPage = errorPage;

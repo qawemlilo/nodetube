@@ -2,6 +2,9 @@
   "name": "nodetube",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "test": "mocha test"
+  },
   "dependencies": {
     "ytdl": "latest",
     "connect": "~2.7.3"
@@ -9,5 +12,9 @@
   "engines": {
     "node": ">= 0.8.0",
     "npm": ">= 1.1.0"
+  },
+  "devDependencies": {
+    "should": "~1.2.2",
+    "mocha": "~1.12.1"
   }
 }

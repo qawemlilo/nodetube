@@ -12,6 +12,8 @@ if (!fs.existsSync(folder)) {
 }
    
 videos.forEach(function (url) {
+    "use strict";
+    
     var download,
         writeStream;
     
