@@ -87,7 +87,7 @@ function Routes (req, res) {
         event.ev = vId;
         event.dp = '/download';
         
-        visitor.event(params).send();
+        visitor.event(event).send();
         
         errorPage(req, res, 'NodeTube does not understand the URL you entered');       
     }
@@ -99,7 +99,7 @@ function Routes (req, res) {
         event.ev = vId;
         event.dp = '/download';
         
-        visitor.event(params).send();
+        visitor.event(event).send();
         
         errorPage(req, res, 'This app is currently active and only allows one download at a time. Please try again later');       
     }
@@ -116,7 +116,7 @@ function Routes (req, res) {
             event.ev = vId;
             event.dp = '/download';
             
-            visitor.event(params).send();
+            visitor.event(event).send();
             
             errorPage(req, res, ':( An error occured while trying to fetch the video from YouTube'); 
         });
@@ -133,7 +133,7 @@ function Routes (req, res) {
                 event.ev = vId;
                 event.dp = '/download';
                 
-                visitor.event(params).send();
+                visitor.event(event).send();
                 
                 errorPage(req, res, 'The file you are trying to download is too big.');
             }
@@ -156,7 +156,7 @@ function Routes (req, res) {
                 event.ev = filename;
                 event.dp = '/download';
                 
-                visitor.event(params).send();
+                visitor.event(event).send();
 
                 req.on('close', function (chunk) {
                     console.log('request cancelled');
