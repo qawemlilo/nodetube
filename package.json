@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "ytdl": "latest",
-    "connect": ">= 2.7.3"
+    "connect": ">= 2.7.3",
+    "universal-analytics": "~0.3.4"
   },
   "engines": {
     "node": ">= 0.8.0",
