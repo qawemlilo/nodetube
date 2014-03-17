@@ -1,8 +1,6 @@
 
 var NodeTube = require('./lib/nodetube'),
-    fs = require('fs'),
-    ua = require('universal-analytics'),
-    visitor = ua('UA-43412130-1'),    
+    fs = require('fs'),   
     URL = require('url'),
     SIZE_LIMIT = (200 * 1024), // 200mb
     active = false;
@@ -76,31 +74,14 @@ function Routes (req, res) {
         stream,
         filename,
         vId = parseUrl(url),
-        event = {},
         vUrl;
 
     
     if (!vId) {
-        event.ec = 'Errors';
-        event.ea = 'Downloading';
-        event.el = 'VideoID';
-        event.ev = vId;
-        event.dp = '/download';
-        
-        visitor.event(event).send();
-        
         errorPage(req, res, 'NodeTube does not understand the URL you entered');       
     }
     
     else if (active) {
-        event.ec = 'Errors';
-        event.ea = 'Concurrency';
-        event.el = 'VideoID';
-        event.ev = vId;
-        event.dp = '/download';
-        
-        visitor.event(event).send();
-        
         errorPage(req, res, 'This app is currently active and only allows one download at a time. Please try again later');       
     }
     
@@ -110,14 +91,6 @@ function Routes (req, res) {
         stream = new NodeTube(vUrl, {quality: quality});
         
         stream.on('error', function () {
-            event.ec = 'Errors';
-            event.ea = 'Streaming';
-            event.el = 'VideoID';
-            event.ev = vId;
-            event.dp = '/download';
-            
-            visitor.event(event).send();
-            
             errorPage(req, res, ':( An error occured while trying to fetch the video from YouTube'); 
         });
         
@@ -125,16 +98,7 @@ function Routes (req, res) {
             filename = parseFilename(info.title, format);
             
             // if file is bigger than limit
-            //if (data.size > SIZE_LIMIT) {
-            if (!data.size) {
-                event.ec = 'Errors';
-                event.ea = 'Filesize';
-                event.el = 'VideoID';
-                event.ev = vId;
-                event.dp = '/download';
-                
-                visitor.event(event).send();
-                
+            if (data.size > SIZE_LIMIT) {
                 errorPage(req, res, 'The file you are trying to download is too big.');
             }
             else {
@@ -149,14 +113,6 @@ function Routes (req, res) {
                 console.log('Downloading ' + filename + ' ...');
                 
                 stream.pipe(res, {end: false});
-                
-                event.ec = 'Downloads';
-                event.ea = 'Downloaded';
-                event.el = 'Video';
-                event.ev = filename;
-                event.dp = '/download';
-                
-                visitor.event(event).send();
 
                 req.on('close', function (chunk) {
                     console.log('request cancelled');
