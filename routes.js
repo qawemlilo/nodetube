@@ -1,6 +1,6 @@
 
 var NodeTube = require('./lib/nodetube'),
-    fs = require('fs'), 
+    fs = require('fs'),   
     URL = require('url'),
     SIZE_LIMIT = (10000 * 1024), // 200mb
     active = false;
@@ -98,8 +98,7 @@ function download (req, res) {
             filename = parseFilename(info.title, format);
             
             // if file is bigger than limit
-            //if (data.size > SIZE_LIMIT) {
-            if (!data.size) {
+            if (data.size > SIZE_LIMIT) {
                 errorPage(req, res, 'The file you are trying to download is too big.');
                 active = true;
                 
