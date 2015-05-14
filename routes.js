@@ -97,6 +97,10 @@ function download (req, res) {
         stream.on('info', function (info, data) {
             filename = parseFilename(info.title, format);
             
+            // if file is bigger than limit
+            //if (data.size > SIZE_LIMIT) {
+            if (!data.size) {
+                errorPage(req, res, 'The file you are trying to download is too big.');
                 active = true;
                 
                 res.writeHead(200, {
@@ -109,7 +113,20 @@ function download (req, res) {
                 
                 stream.pipe(res, {end: false});
 
+                req.on('close', function (chunk) {
+                    console.log('request cancelled');
+                    stream.unpipe(res);     
+                    stream.end();
+                    res.end();
+                });
+                
+                stream.on('data', function (chunk) {
+                    console.log('got %d bytes of data', chunk.length);
+                });
+               
+
                 stream.on('end', function () {
+                    console.log('stream ended');
                     active = false;
                 });
         });

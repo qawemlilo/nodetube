@@ -39,7 +39,7 @@ npm test
 
 
 ## Dependencies
- - [ytdl](https://github.com/fent/node-ytdl)
+ - [ytdl-core](https://github.com/fent/ytdl-core)
  - [connect](http://www.senchalabs.org/connect)
 
 
