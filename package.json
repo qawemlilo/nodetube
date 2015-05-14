@@ -6,15 +6,16 @@
     "test": "mocha test"
   },
   "dependencies": {
-    "ytdl": "latest",
-    "connect": "~2.7.3"
+    "connect": "^2.7.3",
+    "ytdl-core": "^0.5.1"
   },
   "engines": {
-    "node": ">= 0.8.0",
-    "npm": ">= 1.1.0"
+    "node": "0.10.x",
+    "npm": "1.3.x"
   },
   "devDependencies": {
-    "should": "~1.2.2",
-    "mocha": "~1.12.1"
+    "mocha": "^1.12.1",
+    "progress": "^1.1.7",
+    "should": "^1.2.2"
   }
 }

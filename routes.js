@@ -2,7 +2,7 @@
 var NodeTube = require('./lib/nodetube'),
     fs = require('fs'), 
     URL = require('url'),
-    SIZE_LIMIT = (200 * 1024), // 200mb
+    SIZE_LIMIT = (10000 * 1024), // 200mb
     active = false;
 
 
@@ -64,7 +64,7 @@ function errorPage (req, res, msg, fn) {
     Main function
 */ 
 
-function Routes (req, res) {
+function download (req, res) {
     "use strict";
     
     var url = req.body.video, 
@@ -97,11 +97,6 @@ function Routes (req, res) {
         stream.on('info', function (info, data) {
             filename = parseFilename(info.title, format);
             
-            // if file is bigger than limit
-            if (data.size > SIZE_LIMIT) {
-                errorPage(req, res, 'The file you are trying to download is too big.');
-            }
-            else {
                 active = true;
                 
                 res.writeHead(200, {
@@ -117,14 +112,13 @@ function Routes (req, res) {
                 stream.on('end', function () {
                     active = false;
                 });
-            }
         });
     }
 }
 
 
 
-module.exports.download = Routes;
+module.exports.download = download;
 module.exports.parseFilename = parseFilename;
 module.exports.parseUrl = parseUrl;
 module.exports.errorPage = errorPage;
