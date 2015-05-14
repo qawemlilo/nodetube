@@ -128,6 +128,7 @@ function download (req, res) {
                     console.log('stream ended');
                     active = false;
                 });
+            }
         });
     }
 }
