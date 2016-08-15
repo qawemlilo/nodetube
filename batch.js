@@ -1,19 +1,20 @@
-var NodeTube = require('./lib/nodetube');
+
+var ytdl = require('ytdl-core');
 var fs = require('fs');
 var parseFilename = require('./routes').parseFilename;
 var config = require('./config.json');
 var videos = config.videos;
 var folder = config.folder;
 var ProgressBar = require('progress');
-    
+
 
 if (!fs.existsSync(folder)) {
     fs.mkdirSync(folder, 0777);
 }
-   
+
 function exec() {
     "use strict";
-    
+
     if (!videos.length) {
       return;
     }
@@ -22,11 +23,11 @@ function exec() {
     var writeStream;
     var url = videos.pop();
     var filename;
-    
 
-    
-    download = new NodeTube(url, {quality: config.quality});
-    
+
+
+    download = ytdl(url, {quality: config.quality});
+
     download.on('info', function (info, data) {
 
         console.log('');
@@ -39,10 +40,10 @@ function exec() {
         });
 
         filename = parseFilename(info.title, config.format);
-        
+
         writeStream = fs.createWriteStream(folder + filename);
-    
-        download.on('data', function (progress) { 
+
+        download.on('data', function (progress) {
            bar.tick(progress.length);
         });
 

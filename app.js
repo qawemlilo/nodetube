@@ -1,14 +1,16 @@
-var http = require('http'),
-    connect = require('connect'),
-    routes = require('./routes'),
-    port = process.env.PORT || 3030;
-    
-    
-var app = connect()
-    .use(connect.static('app'))
-    .use(connect.compress()) 
-    .use(connect.bodyParser())
-    .use('/download', routes.download);
+var http = require('http');
+var connect = require('connect');
+var serveStatic = require('serve-static');
+var bodyParser = require('body-parser');
+var routes = require('./routes');
+var port = process.env.PORT || 3030;
+
+
+var app = connect();
+
+app.use(serveStatic('app'))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use('/download', routes.download);
 
 
 http.createServer(app).listen(port, function() {

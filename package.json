@@ -1,14 +1,17 @@
 {
   "name": "nodetube",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "start": "node app.js",
     "test": "mocha test"
   },
   "dependencies": {
-    "connect": "^2.7.3",
-    "ytdl-core": "^0.5.1"
+    "body-parser": "^1.15.2",
+    "connect": "^3.4.1",
+    "serve-static": "^1.11.1",
+    "ytdl-core": "^0.7.17",
+    "progress": "^1.1.7"
   },
   "engines": {
     "node": "0.10.x",
@@ -16,7 +19,7 @@
   },
   "devDependencies": {
     "mocha": "^1.12.1",
-    "progress": "^1.1.7",
+
     "should": "^1.2.2"
   }
 }
