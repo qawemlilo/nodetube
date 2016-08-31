@@ -18,8 +18,7 @@
     "npm": "2.14.x"
   },
   "devDependencies": {
-    "mocha": "^1.12.1",
-
-    "should": "^1.2.2"
+    "mocha": "^3.0.2",
+    "should": "^11.1.0"
   }
 }
