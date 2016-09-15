@@ -10,7 +10,7 @@
     "body-parser": "^1.15.2",
     "connect": "^3.4.1",
     "serve-static": "^1.11.1",
-    "ytdl-core": "^0.7.17",
+    "ytdl-core": "^0.7.18",
     "progress": "^1.1.7"
   },
   "engines": {
