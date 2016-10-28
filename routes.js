@@ -123,6 +123,7 @@ function download (req, res, next) {
       stream.on('end', function () {
           console.log('stream ended');
           active = false;
+          res.end();
       });
     });
   }

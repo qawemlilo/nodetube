@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
+    "deploy": "git push heroku master",
     "test": "mocha test"
   },
   "dependencies": {
