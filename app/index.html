@@ -16,23 +16,23 @@
         background: #000000 url(img/bg.jpg) top center no-repeat;
         color: #fff;
     }
-      
+
     .container {
         margin: 0 auto;
         max-width: 480px;
     }
-      
+
     h1 {
         font-family: 'Berkshire Swash', cursive;
         text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333, 0.05em 0.05em #020763;
         font-size: 60px;
         line-height: 60px;
     }
-      
+
     p, a {
         color: #999;
     }
-      
+
     footer {
         margin-top: 40px;
     }
@@ -41,7 +41,7 @@
         color: #FFFFFF;
         text-decoration: none;
     }
-    
+
     select {
         width: auto;
     }
@@ -56,42 +56,42 @@
   <a href="https://github.com/qawemlilo/nodetube" target="_bla" class="visible-desktop">
     <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
   </a>
-  
+
   <div class="container" style="text-align: center">
     <div class="row-fluid">
       <h1>Node<span style="color:red">Tube</span></h1>
-      <p>Download your YouTube videos (200MB max size)</p>
+      <p>Download your YouTube videos</p>
     </div>
-  
-    <form action="/download" method="post" name="nodetube" onsubmit="return (!!(document.forms[0].video.value));"> 
+
+    <form action="/download" method="post" name="nodetube" onsubmit="return (!!(document.forms[0].video.value));">
       <div class="row-fluid" style="padding-bottom: 5px; padding-top: 0px;">
         <select name="format">
           <option value="">Format</option>
           <option value="flv">FLV</option>
           <option value="mp4">MP4</option>
         </select>
-        
+
         <select name="quality">
           <option value="">Quality</option>
           <option value="lowest">Low</option>
           <option value="18">Medium</option>
           <option value="highest">High</option>
-        </select> 
+        </select>
       </div>
-      
+
       <div class="input-append">
         <input placeholder="Enter youtube video URL" name="video" class="span4" onfocus="if(this.value) document.forms[0].reset();" id="video" type="text">
         <button class="btn" type="submit">Go!</button>
       </div>
     </form>
   </div>
-   
+
   <footer>
     <p  style="text-align: center">
       <i class="icon-fire icon-white"></i> <a target="_blank" href="http://www.ragingflame.co.za/">Raging Flame &copy; 2013</a>
     </p>
   </footer>
- 
+
 <script type="text/javascript">
 WebFontConfig = {
     google: { families: [ 'Berkshire+Swash::latin' ] }
@@ -105,9 +105,8 @@ WebFontConfig = {
     wf.async = 'true';
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(wf, s);
-})(); 
+})();
 </script>
 
 </body>
 </html>
-
