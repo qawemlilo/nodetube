@@ -8,7 +8,7 @@
     "test": "mocha test"
   },
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.16.0",
     "connect": "^3.5.1",
     "serve-static": "^1.11.1",
     "ytdl-core": "^0.13.3",
