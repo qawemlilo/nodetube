@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
-    "connect": "^3.5.1",
+    "connect": "^3.6.0",
     "serve-static": "^1.11.1",
     "ytdl-core": "^0.13.3",
     "progress": "^1.1.7"
