@@ -93,6 +93,12 @@ function download (req, res, next) {
         active = false;
     });
 
+    stream.on('progress', function(chunkLength, downloaded, total) {
+      process.stdout.cursorTo(0);
+      process.stdout.clearLine(1);
+      process.stdout.write((downloaded / total * 100).toFixed(2) + '% ');
+    });
+
     stream.on('info', function (info, data) {
       filename = parseFilename(info.title, format);
 
@@ -104,8 +110,6 @@ function download (req, res, next) {
           'Content-Type': contentType
       });
 
-      console.log('Downloading ' + filename + ' ...');
-
       stream.pipe(res);
 
       req.on('close', function (chunk) {
@@ -115,13 +119,9 @@ function download (req, res, next) {
           res.end();
       });
 
-      stream.on('data', function (chunk) {
-          console.log('got %d bytes of data', chunk.length);
-      });
-
 
       stream.on('end', function () {
-          console.log('stream ended');
+          console.log('stream ended \n');
           active = false;
           res.end();
       });
