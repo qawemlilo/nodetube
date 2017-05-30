@@ -11,7 +11,8 @@
     "body-parser": "^1.15.2",
     "connect": "^3.5.1",
     "serve-static": "^1.11.1",
-    "ytdl-core": "^0.13.3"
+    "ytdl-core": "^0.14.2",
+    "progress": "^1.1.7"
   },
   "engines": {
     "node": "0.14.x",
