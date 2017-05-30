@@ -4,6 +4,8 @@ NodeTube is a Node.js app for downloading YouTube videos. [Go to App](http://nod
 
 ## Installation
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/qawemlilo/nodetube.svg)](https://greenkeeper.io/)
+
 ```
 # Download the package
 git clone https://github.com/qawemlilo/nodetube.git
